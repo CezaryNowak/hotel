@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Room;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,11 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        Room::factory()->create([
+            'title' => 'title1',
+            'number' => '02',
+            'capacity' => 5,
+            'description' => 'desc',
+            'price' => 20000,
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Room::factory()->create([
+            'title' => 'title2',
+            'number' => '03',
+            'capacity' => 2,
+            'description' => 'desc2',
+            'price' => 30000,
+        ]);
     }
 }
