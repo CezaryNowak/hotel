@@ -4,19 +4,18 @@
             {{ __('Your reservations') }}
         </h2>
     </x-slot>
-
-    <div class="py-12">
+    <div class="py-12 h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if($reservations->isEmpty())
-                    <h1>{{ __("You didn't made any reservations yet!")}}</h1>
+            <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    @if ($reservations->isEmpty())
+                        <h1>{{ __("You didn't made any reservations yet!") }}</h1>
                     @else
-                    @foreach($reservations as $reservation)
-                    <a href="{{route('room', ['id' => $reservation['roomId']] )}}">
-                    Wow reservations much
-                    </a>
-                    @endforeach
+                        @foreach ($reservations as $reservation)
+                            <a href="{{ route('room', ['id' => $reservation['roomId']]) }}">
+                                Wow reservations much
+                            </a>
+                        @endforeach
                     @endif
                 </div>
             </div>
