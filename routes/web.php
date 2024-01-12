@@ -16,13 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('home'); })->name('home');
-Route::get('/dashboard', function () { return redirect()->route('home'); });
-Route::get('/contact', function () { return view('contact'); })->name('contact');
-Route::get('/gallery', function () { return view('gallery'); })->name('gallery');
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+Route::get('/dashboard', function () {
+    return redirect()->route('home');
+});
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+Route::get('/gallery', function () {
+    return view('gallery');
+})->name('gallery');
 Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
 Route::get('/room/{id}', [RoomController::class, 'show', 'id'])->name('room');
-Route::get('/example', function () { return view('example'); });
+Route::get('/example', function () {
+    return view('example');
+});
 //Route::get('/rooms', [HomeController::class, 'index'])->name('rooms');
 //Route::get('/rooms/{inDate?}/{outDate?}', [RoomController::class, 'getroom','inDate,'outDate',])->name('rooms);
 //Route::get('/rooms/{id?}', [RoomController::class, 'getroom','id',])->name('room');
@@ -38,7 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/reservations', [ReservationController::class, 'show'])->name('reservations.show');
     Route::delete('/reservations', [ReservationController::class, 'destroy'])->name('reservations.destroy');
-    
+    Route::post('/reservations', [ReservationController::class, 'create'])->name('reservations.create');
 });
 
 require __DIR__.'/auth.php';

@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
-
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        $formFields = $request->validate([
+            'input' => 'required',
+        ]);
+        dd($formFields);
     }
 
     /**
@@ -22,7 +25,7 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -31,8 +34,9 @@ class ReservationController extends Controller
     public function show(Reservation $reservation)
     {
         $reservations = Reservation::where('userId', '=', Auth::id())->get();
+
         return view('reservations', compact('reservations'));
-        
+
     }
 
     public function destroy(Reservation $reservation)

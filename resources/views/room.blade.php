@@ -1,5 +1,3 @@
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"  rel="stylesheet" />
-
 <x-app-layout>
     <div class="py-12 h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -13,23 +11,23 @@
                             <h1>{{ $room->title }}</h1>
                             <p>{{ $room->description }}</p>
                         </div>
-                     
+                        <div class="d-flex justify-content-center">
+                                <h3>Book now:</h3>
+                                <form method="POST" action="{{ route('reservations.create') }}">
+                                    @csrf
+                                    <label for="input-id"></label>
+                                    <input id="input-id" name="input" type="text" />
+                                    <x-primary-button class="ms-4">
+                                        {{ __('Book') }}
+                                    </x-primary-button>
+                            </form>
+                        </div>
                     @endif
                 </div>
             </div>
         </div>
     </div>
-    <div class="input-daterange input-group" id="datepicker">
-        <input type="text" class="input-sm form-control" name="start" />
-        <span class="input-group-addon">to</span>
-        <input type="text" class="input-sm form-control" name="end" />
-    </div>
+    <script type="module">
+        datePicker();
+    </script>
 </x-app-layout>
-
-<script>
-    $('#sandbox-container .input-daterange').datepicker({
-    daysOfWeekHighlighted: "0,2,4,6",
-    datesDisabled: ['01/06/2024', '01/21/2024']
-});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>

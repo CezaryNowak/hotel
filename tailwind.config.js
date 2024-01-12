@@ -1,6 +1,5 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
-import Datepicker from 'flowbite-datepicker/Datepicker';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -9,10 +8,6 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         "./node_modules/flowbite/**/*.js",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
-        "./node_modules/flowbite-datepicker/**/*.js",
-        './src/**/*.{js,jsx,ts,tsx}' 
     ],
     theme: {
         extend: {

@@ -22,3 +22,5 @@ cp .env.example .env &&
 ./vendor/bin/sail npm install &&
 ./vendor/bin/sail npm run dev
 ```
+./vendor/bin/pint
+
