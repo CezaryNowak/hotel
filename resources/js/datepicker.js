@@ -1,25 +1,23 @@
 import HotelDatepicker from "hotel-datepicker";
 import "hotel-datepicker/dist/css/hotel-datepicker.css";
-
-export function datePicker(exludedDates){
+// Initialize the HotelDatepicker instance and configure it with excluded dates
+export function datePicker(excludedDates) {
     const input = document.getElementById('input-id');
-    let today = new Date();
-    today.setDate(today.getDate()+1);
-    const dd = String(today.getDate()).padStart(2, '1');
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const yyyy = today.getFullYear();
-    today = yyyy + '-' + mm + '-' + dd;
+    const today = new Date();
+    today.setDate(today.getDate() + 1);
 
-    let excludDates;
-
-    if(exludedDates)
-    for (let i = 0; i<excludDates.length; i++){
-        excludDates.push(exludedDates[i]);
-    }
-
-    const datepicker = new HotelDatepicker(input, {
+    const options = {
+        format: 'DD-MM-YYYY',
         startDate: today,
-        disabledDates: excludDates
-    });
+        enableCheckout: true,
+        autoClose: true,
+        minNights: 1,
+        selectForward: true,
+        disableDates: excludedDates, // Array of excluded dates
+        moveBothMonths: true,
+    };
+
+    const picker = new HotelDatepicker(input, options);
+    return picker;
 }
 export default datePicker;

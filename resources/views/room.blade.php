@@ -12,14 +12,15 @@
                             <p>{{ $room->description }}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                                <h3>Book now:</h3>
-                                <form method="POST" action="{{ route('reservations.create') }}">
-                                    @csrf
-                                    <label for="input-id"></label>
-                                    <input id="input-id" name="input" type="text" />
-                                    <x-primary-button class="ms-4">
-                                        {{ __('Book') }}
-                                    </x-primary-button>
+                            <h3>Book now:</h3>
+                            <form method="POST" action="{{ route('reservations.create') }}">
+                                @csrf
+                                <label for="input-id"></label>
+                                <input id="input-id" name="input" type="text" />
+                                <input type="hidden" name="roomId" value="{{ $room->id }}" />
+                                <x-primary-button class="ms-4">
+                                    {{ __('Book') }}
+                                </x-primary-button>
                             </form>
                         </div>
                     @endif
