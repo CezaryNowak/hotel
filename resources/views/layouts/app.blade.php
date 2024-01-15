@@ -40,6 +40,7 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
             {{ $slot }}
         </main>
     </div>
+    <x-message/>
 </body>
 
 </html>

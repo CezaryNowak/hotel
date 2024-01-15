@@ -26,7 +26,7 @@ class ReservationController extends Controller
                     $endDate = $dates[1];
 
                     if ($startDate > $endDate) {
-                        $fail('The second date must be larger than the first date.');
+                        return back()->with('message', 'The second date must be larger than the first date.');
                     }
                 },
             ],
@@ -82,6 +82,6 @@ class ReservationController extends Controller
     public function destroy($id)
     {
         Reservation::where('id', $id)->delete();
-        return back()->with('message', 'Removed from watchlist');
+        return back()->with('message', 'Reservation canceled!');
     }
 }
