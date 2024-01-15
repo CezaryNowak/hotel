@@ -79,8 +79,9 @@ class ReservationController extends Controller
 
     }
 
-    public function destroy(Reservation $reservation)
+    public function destroy($id)
     {
-        //
+        Reservation::where('id', $id)->delete();
+        return back()->with('message', 'Removed from watchlist');
     }
 }

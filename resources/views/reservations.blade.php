@@ -26,7 +26,11 @@
                                         </div>
                                         <div>
                                             <a href="{{ route('room', ['id' => $reservation['roomId']]) }}" class="block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">{{ __("View Room") }}</a>
-                                            <button class="block mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">{{ __("Cancel") }}</button>
+                                            <form method="POST" action="{{ route('reservations.destroy', $reservation->id) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="block mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">{{ __("Cancel") }}</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </li>
