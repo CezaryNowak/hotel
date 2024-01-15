@@ -29,6 +29,6 @@
         </div>
     </div>
     <script type="module">
-        datePicker();
+        datePicker({!! $dates !!});
     </script>
 </x-app-layout>

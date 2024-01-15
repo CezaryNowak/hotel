@@ -5,6 +5,7 @@ export function datePicker(excludedDates) {
     const input = document.getElementById('input-id');
     const today = new Date();
     today.setDate(today.getDate() + 1);
+    console.log(excludedDates);
 
     const options = {
         format: 'DD-MM-YYYY',
@@ -13,7 +14,7 @@ export function datePicker(excludedDates) {
         autoClose: true,
         minNights: 1,
         selectForward: true,
-        disableDates: excludedDates, // Array of excluded dates
+        disabledDates: excludedDates, // Array of excluded dates
         moveBothMonths: true,
     };
 

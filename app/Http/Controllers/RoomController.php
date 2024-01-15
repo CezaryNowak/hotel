@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use App\Models\Room;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Carbon\CarbonPeriod;
 
 class RoomController extends Controller
 {
@@ -22,9 +25,19 @@ class RoomController extends Controller
      */
     public function show(int $id)
     {
+        $dates = [];
         $room = Room::findOrFail($id);
-
-        return view('room', compact('room'));
+        $roomReservations = Reservation::where('roomId', $id)->get();
+        foreach ($roomReservations as $reservation) {
+            $checkOutDate = Carbon::createFromFormat('Y-m-d H:i:s', $reservation->checkOutDate);
+            $checkOutDate->subDay();
+            $period = CarbonPeriod::create($reservation->checkInDate, $checkOutDate);
+            foreach ($period as $date) {
+                $dates[] = $date->format('Y-m-d');
+            }
+        }
+        $dates = json_encode($dates);
+        return view('room', compact('room','dates'));
     }
 
     /**
