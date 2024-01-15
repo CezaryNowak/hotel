@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\Room;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use DateTime;
-use Carbon\Carbon;
+
 class ReservationController extends Controller
 {
     /**
@@ -39,7 +40,7 @@ class ReservationController extends Controller
 
         $dates = explode(' - ', $formFields['input']);
 
-        if (self::store($dates,$formFields['roomId'])) {
+        if (self::store($dates, $formFields['roomId'])) {
             return back()->with('message', 'Booked!');
         } else {
             return back()->with('message', 'Something wrong');
@@ -49,13 +50,17 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store($dates,$roomId)
+    public function store($dates, $roomId)
     {
-        $checkinDate = DateTime::createFromFormat('d-m-Y', $dates[0]);
-        $checkoutDate = DateTime::createFromFormat('d-m-Y', $dates[1]);
+        $room = Room::findOrFail($roomId);
+
+        $checkinDate = Carbon::parse($dates[0]);
+        $checkoutDate = Carbon::parse($dates[1]);
+        $numberOfDays = $checkinDate->diffInDays($checkoutDate);
         $reservation = new Reservation;
         $reservation->userId = Auth::id();
         $reservation->roomId = $roomId;
+        $reservation->totalPrice = $numberOfDays * $room->price;
         $reservation->checkInDate = $checkinDate->format('Y-m-d');
         $reservation->checkOutDate = $checkoutDate->format('Y-m-d');
         $reservation->canceled = false;
@@ -82,6 +87,7 @@ class ReservationController extends Controller
     public function destroy($id)
     {
         Reservation::where('id', $id)->delete();
+
         return back()->with('message', 'Reservation canceled!');
     }
 }

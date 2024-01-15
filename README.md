@@ -22,5 +22,17 @@ cp .env.example .env &&
 ./vendor/bin/sail npm install &&
 ./vendor/bin/sail npm run dev
 ```
+
+To stop it:
+ctrl + C
+```
+./vendor/bin/sail down
+```
+
+To run after initialization::
+```
+./vendor/bin/sail up -d &&
+./vendor/bin/sail npm run dev
+```
 ./vendor/bin/pint
 

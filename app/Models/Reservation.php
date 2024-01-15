@@ -11,8 +11,8 @@ class Reservation extends Model
     protected $fillable = [
         'roomId',
         'userId',
+        'totalPrice',
         'checkInDate',
         'checkOutDate',
-        'canceled',
     ];
 }

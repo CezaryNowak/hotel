@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('userId');
             $table->foreign('roomId')->references('id')->on('rooms');
             $table->foreign('userId')->references('id')->on('users');
+            $table->unsignedBigInteger('totalPrice');
             $table->dateTime('checkInDate');
             $table->dateTime('checkOutDate');
             $table->boolean('canceled');
