@@ -40,7 +40,7 @@ class ReservationController extends Controller
         $dates = explode(' - ', $formFields['input']);
 
         if (self::store($dates,$formFields['roomId'])) {
-            return back()->with('message', 'Added new currency to watchlist');
+            return back()->with('message', 'Booked!');
         } else {
             return back()->with('message', 'Something wrong');
         }

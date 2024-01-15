@@ -16,7 +16,7 @@
                                 <li class="py-3">
                                     <div class="flex justify-between items-center">
                                         <div>
-                                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ __("Reservation for Room ID") }} {{ $reservation['roomId'] }}</h2>
+                                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ __("Reservation for room number: ") }} {{ $reservation['room'] }}</h2>
                                             <p class="text-gray-500 dark:text-gray-400">
                                                 {{ __("Check-in Date:") }} {{ $reservation['checkInDate'] }}
                                             </p>

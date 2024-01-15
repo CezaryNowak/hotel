@@ -27,7 +27,7 @@ class RoomController extends Controller
     {
         $dates = [];
         $room = Room::findOrFail($id);
-        $roomReservations = Reservation::where('roomId', $id)->get();
+        $roomReservations = Reservation::where('roomId', $id)->where('checkOutDate', '>=', Carbon::now())->get();
         foreach ($roomReservations as $reservation) {
             $checkOutDate = Carbon::createFromFormat('Y-m-d H:i:s', $reservation->checkOutDate);
             $checkOutDate->subDay();
