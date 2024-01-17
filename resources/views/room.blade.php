@@ -16,7 +16,7 @@
                             <form method="POST" action="{{ route('reservations.create') }}" class="ml-4">
                                 @csrf
                                 <label for="input-id" class="sr-only">Input ID</label>
-                                <input id="input-id" name="input" type="text" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                <input autocomplete="off" id="input-id" name="input" type="text" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                                 <input type="hidden" name="roomId" value="{{ $room->id }}" />
                                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 py-2 ml-4">{{ __('Book') }}</button>
                             </form>

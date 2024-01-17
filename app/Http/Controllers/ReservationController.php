@@ -16,29 +16,17 @@ class ReservationController extends Controller
      */
     public function create(Request $request)
     {
-        Validator::make($request->all(), [
-            'datestring' => [
-                'required',
-                'string',
-                'regex:/^\d{2}-\d{2}-\d{4} - \d{2}-\d{2}-\d{4}$/',
-                function ($attribute, $value, $fail) {
-                    $dates = explode(' - ', $value);
-                    $startDate = $dates[0];
-                    $endDate = $dates[1];
-
-                    if ($startDate > $endDate) {
-                        return back()->with('message', 'The second date must be larger than the first date.');
-                    }
-                },
-            ],
-        ]);
-
         $formFields = $request->validate([
             'input' => 'required|string|regex:/^\d{2}-\d{2}-\d{4} - \d{2}-\d{2}-\d{4}$/',
             'roomId' => 'required|integer',
         ]);
 
         $dates = explode(' - ', $formFields['input']);
+        $startDate = $dates[0];
+        $endDate = $dates[1];
+        if ($startDate > $endDate) {
+            return back()->with('message', 'The second date must be larger than the first date.');
+         }
 
         if (self::store($dates, $formFields['roomId'])) {
             return back()->with('message', 'Booked!');
