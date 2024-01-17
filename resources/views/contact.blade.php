@@ -13,14 +13,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <div class="font-bold tracking-tight text-gray-900 dark:text-white">
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Contact
-                        Information</h2>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ __('Contact
+                        Information') }}</h2>
                     <p>Email: contact@grandeagle.com</p>
-                    <p>Address: ul. Orłowska 3, 03-571 Warszawa</p>
-                    <p>Phone: +48 123 456 789</p>
+                    <p>{{ __('Address') }}: ul. Orłowska 3, 03-571 Warszawa</p>
+                    <p>{{ __('Phone') }}: +48 123 456 789</p>
                 </div>
                 <h2 class="font-semibold text-center text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    How to find us
+                    {{ __('How to find us') }}
                 </h2>
                 <div class="google-maps">
                     <iframe
