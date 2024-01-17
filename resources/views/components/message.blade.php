@@ -15,7 +15,7 @@
     if (document.getElementById("alert-2")) {
        setTimeout(function () {
            document.getElementById("alert-2").style.display = "none";
-       }, 4000);
+       }, 2000);
    }
 </script>
 

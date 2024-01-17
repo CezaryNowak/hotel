@@ -67,15 +67,23 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        $reservations = Reservation::where('userId', '=', Auth::id())->get();
-
-        foreach ($reservations as $reservation) {
+        $reservationsData = Reservation::where('userId', '=', Auth::id())->get();
+        $reservations = [];
+        foreach ($reservationsData as $reservation) {
+            $reservationRoom = Room::where('id', $reservation->roomId)->first();
+            $reservation->roomNumber = $reservationRoom->number;
             $reservation->checkInDate = Carbon::createFromFormat('Y-m-d H:i:s', $reservation->checkInDate)->format('d-m-Y');
             $reservation->checkOutDate = Carbon::createFromFormat('Y-m-d H:i:s', $reservation->checkOutDate)->format('d-m-Y');
+            $reservations[] = [
+                'id' => $reservation->id,
+                'roomId' => $reservation->roomId,
+                'totalPrice' => $reservation->totalPrice,
+                'checkInDate' => $reservation->checkInDate,
+                'checkOutDate' => $reservation->checkOutDate,
+                'roomNumber' => $reservation->roomNumber,
+            ];
         }
-
         return view('reservations', compact('reservations'));
-
     }
 
     public function destroy($id)
