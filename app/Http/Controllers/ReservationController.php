@@ -22,11 +22,17 @@ class ReservationController extends Controller
         ]);
 
         $dates = explode(' - ', $formFields['input']);
-        $startDate = $dates[0];
-        $endDate = $dates[1];
+        $startDate = Carbon::parse($dates[0]);
+        $endDate = Carbon::parse($dates[1]);
+
         if ($startDate > $endDate) {
             return back()->with('message', 'The second date must be larger than the first date.');
          }
+
+        $reservatios = Reservation::where('roomId', $formFields['roomId'])->where('checkInDate', '>=', $startDate->format('Y-m-d'))->where('checkOutDate', '<=', $endDate->format('Y-m-d'))->get();
+        if (count($reservatios) > 0) {
+            return back()->with('message', 'The room is already booked for this date.');
+        }
 
         if (self::store($dates, $formFields['roomId'])) {
             return back()->with('message', 'Booked!');
