@@ -11,9 +11,8 @@ window.confirmCancelation = function (e) {
         title: "Are you sure you want to cancel?",
         showDenyButton: true,
         confirmButtonText: "Yes",
-        denyButtonText: `No`
+        denyButtonText: "No"
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           form.submit();
         } 
