@@ -31,7 +31,7 @@ class ReservationController extends Controller
 
         $reservatios = Reservation::where('roomId', $formFields['roomId'])->where('checkInDate', '>=', $startDate->format('Y-m-d'))->where('checkOutDate', '<=', $endDate->format('Y-m-d'))->get();
         if (count($reservatios) > 0) {
-            return back()->with('message', 'The room is already booked for this date.');
+            return back()->with('message', 'This date is unavailable');
         }
 
         if (self::store($dates, $formFields['roomId'])) {

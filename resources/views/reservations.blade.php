@@ -43,7 +43,8 @@
                                                     action="{{ route('reservations.destroy', $reservation['id']) }}">
                                                     @csrf
                                                     @method('delete')
-                                                    <button
+                                                    <button onclick="confirmCancelation(event)"
+                                                    type="submit"
                                                         class="block px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
                                                         {{ __('Cancel') }}
                                                     </button>
