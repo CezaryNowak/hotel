@@ -7,7 +7,6 @@ use App\Models\Room;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
 {
@@ -27,7 +26,7 @@ class ReservationController extends Controller
 
         if ($startDate > $endDate) {
             return back()->with('message', 'The second date must be larger than the first date.');
-         }
+        }
 
         $reservatios = Reservation::where('roomId', $formFields['roomId'])->where('checkInDate', '>=', $startDate->format('Y-m-d'))->where('checkOutDate', '<=', $endDate->format('Y-m-d'))->get();
         if (count($reservatios) > 0) {
@@ -83,6 +82,7 @@ class ReservationController extends Controller
                 'roomNumber' => $reservation->roomNumber,
             ];
         }
+
         return view('reservations', compact('reservations'));
     }
 

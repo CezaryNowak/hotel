@@ -31,7 +31,6 @@ Route::get('/gallery', function () {
 Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
 Route::get('/room/{id}', [RoomController::class, 'show', 'id'])->name('room');
 
-
 //Route::get('/rooms/{inDate?}/{outDate?}', [RoomController::class, 'getroom','inDate,'outDate',])->name('rooms);
 
 /*

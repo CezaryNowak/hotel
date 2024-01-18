@@ -16,6 +16,7 @@
                         <a href="{{route('room', ['id' => $room['id']] )}}" class="block mb-4">
                             <div class="border border-info p-4 rounded-lg">
                                 <h2 class="text-xl font-bold">{{ $room['number']}}</h2>
+                                <p class="text-gray-600">{{ __('Capacity:')}}  {{ $room['capacity']}}</p>
                                 <p class="text-gray-600">{{ __('Price:')}} ${{ number_format($room->price / 100, 2)}} PLN</p>
                             </div>
                         </a>
