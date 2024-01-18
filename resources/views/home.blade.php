@@ -7,15 +7,14 @@
   
     <div class="py-12 h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Home</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">lorem.</p>
-                <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Read more
-                </a>
+            <div class="flex flex-col items-center justify-center h-full">
+                <h1 class="text-5xl font-bold text-gray-900 dark:text-white">Welcome to our Hotel</h1>
+                <div class="mt-8 flex space-x-4">
+                    <a href="{{ route('rooms') }}" class="px-4 py-2 text-lg font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Rooms</a>
+                    <a href="{{ route('contact') }}" class="px-4 py-2 text-lg font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Contact</a>
+                    <a href="{{ route('gallery') }}" class="px-4 py-2 text-lg font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Gallery</a>
+                </div>
             </div>
         </div>
     </div>
-  </x-app-layout>
+</x-app-layout>
