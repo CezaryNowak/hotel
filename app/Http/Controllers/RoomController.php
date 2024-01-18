@@ -14,9 +14,25 @@ class RoomController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $rooms = Room::all();
-
+    {   $capacity = request('capacity');
+        $dates = request('input');
+        
+        $rooms = ($capacity)
+            ? Room::where('capacity', '>=', $capacity)
+            : Room::query();
+            
+        if ($dates) {
+            $dates = explode(' - ', $dates);
+            $startDate = Carbon::parse($dates[0]);
+            $endDate = Carbon::parse($dates[1]);
+            $reservations = Reservation::where('checkInDate', '<=', $startDate)->where('checkOutDate', '>=', $endDate)->get();
+            foreach ($reservations as $reservation) {
+                $rooms->where('id', '!=', $reservation->roomId);
+            }
+        }
+    
+        $rooms = $rooms->get();
+    
         return view('rooms', compact('rooms'));
     }
 
